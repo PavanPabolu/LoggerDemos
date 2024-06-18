@@ -1,0 +1,6 @@
+@Logger.AzureApplicationInsight.WebAPI_HostAddress = http://localhost:5140
+
+GET {{Logger.AzureApplicationInsight.WebAPI_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
