@@ -1,0 +1,6 @@
+@Logger.Serilog.ConsoleAndFile.WebAPI_HostAddress = http://localhost:5017
+
+GET {{Logger.Serilog.ConsoleAndFile.WebAPI_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
