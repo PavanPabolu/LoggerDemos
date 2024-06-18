@@ -5,6 +5,8 @@ VisualStudioVersion = 17.10.34928.147
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Logger.Serilog.ConsoleAndFile.WebAPI", "Logger.Serilog.ConsoleAndFile.WebAPI\Logger.Serilog.ConsoleAndFile.WebAPI.csproj", "{F283C636-73B2-4F91-BEA2-07D23707390E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Logger.Serilog.AzureApplicationInsight.WebAPI", "Logger.Serilog.AzureApplicationInsight.WebAPI\Logger.Serilog.AzureApplicationInsight.WebAPI.csproj", "{05A5247A-B594-47E9-8B5F-7092FB23DACE}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{F283C636-73B2-4F91-BEA2-07D23707390E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F283C636-73B2-4F91-BEA2-07D23707390E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F283C636-73B2-4F91-BEA2-07D23707390E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{05A5247A-B594-47E9-8B5F-7092FB23DACE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{05A5247A-B594-47E9-8B5F-7092FB23DACE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{05A5247A-B594-47E9-8B5F-7092FB23DACE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{05A5247A-B594-47E9-8B5F-7092FB23DACE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
