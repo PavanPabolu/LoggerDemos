@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using Serilog;
 
 namespace Logger.Serilog.ConsoleAndFile.WebAPI.Controllers
 {
@@ -12,15 +13,23 @@ namespace Logger.Serilog.ConsoleAndFile.WebAPI.Controllers
         };
 
         private readonly ILogger<WeatherForecastController> _logger;
+        private readonly HelperService _helperService;
 
-        public WeatherForecastController(ILogger<WeatherForecastController> logger)
+        public WeatherForecastController(ILogger<WeatherForecastController> logger, HelperService helperService)
         {
             _logger = logger;
+            _helperService = helperService;
         }
 
         [HttpGet(Name = "GetWeatherForecast")]
         public IEnumerable<WeatherForecast> Get()
         {
+            _logger.LogInformation("WeatherForecastController Get method called.");
+            Log.Information("WeatherForecastController Get method called.");
+            // Use helper service
+            _helperService.PerformOperation();
+
+
             return Enumerable.Range(1, 5).Select(index => new WeatherForecast
             {
                 Date = DateOnly.FromDateTime(DateTime.Now.AddDays(index)),
