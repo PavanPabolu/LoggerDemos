@@ -1,14 +1,16 @@
-using Microsoft.Extensions.Logging;
+using Microsoft.ApplicationInsights.Extensibility;
+using Microsoft.ApplicationInsights;
+using Microsoft.Extensions.Logging.ApplicationInsights;
 
 var builder = WebApplication.CreateBuilder(args);
 
 
-//var configuration = new ConfigurationBuilder()
-//    .AddJsonFile("appsettings.json")
-//    .Build();
-builder.Logging.ClearProviders();
-//builder.Logging.AddConsole();
-builder.Logging.AddApplicationInsights("0c4e73f1-8e95-4723-87a4-c863e6b2e742");
+////var configuration = new ConfigurationBuilder()
+////    .AddJsonFile("appsettings.json")
+////    .Build();
+//builder.Logging.ClearProviders();
+////builder.Logging.AddConsole();
+//builder.Logging.AddApplicationInsights("0c4e73f1-8e95-4723-87a4-c863e6b2e742");
 
 
 
@@ -24,7 +26,11 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddApplicationInsightsTelemetry();
 
-
+//You can call the Application Insights trace API directly. The logging adapters use this API.
+//https://learn.microsoft.com/en-us/azure/azure-monitor/app/asp-net-trace-logs#:~:text=Use%20the%20Trace%20API%20directly
+TelemetryConfiguration configuration = TelemetryConfiguration.CreateDefault();
+var telemetryClient = new TelemetryClient(configuration);
+telemetryClient.TrackTrace("Slow response - database01");
 //-----------------------------------------------
 
 

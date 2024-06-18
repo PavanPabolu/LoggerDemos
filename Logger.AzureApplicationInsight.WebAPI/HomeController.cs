@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging.ApplicationInsights;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -22,7 +23,9 @@ namespace Logger.AzureApplicationInsight.WebAPI
             
             
             _logger.LogInformation("This is test message from Logger.AzureApplication.WebAPI controller - {DT}.", DateTime.UtcNow.ToLongTimeString());
-
+            _logger.LogWarning("An example of a Warning trace..");
+            _logger.LogError("An example of an Error level message");
+            _logger.LogTrace("An example of an Trace level message");
 
 
 
