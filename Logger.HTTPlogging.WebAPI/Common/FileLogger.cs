@@ -24,7 +24,7 @@ namespace Logger.HTTPlogging.WebAPI.Common
             {
                 lock (_lock)
                 {
-                    var msg = $"\n{DateTime.Now}:{formatter(state, exception)} {Environment.NewLine}";
+                    var msg = $"{DateTime.Now}:{formatter(state, exception)} {Environment.NewLine}";
                     File.AppendAllText(_filePath, msg);
                 }
             }

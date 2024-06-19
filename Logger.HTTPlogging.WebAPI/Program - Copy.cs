@@ -1,6 +1,5 @@
 using Logger.HTTPlogging.WebAPI.Common;
 using Microsoft.AspNetCore.HttpLogging;
-using Microsoft.Extensions.Logging;
 //using Microsoft.Extensions.Logging;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -10,6 +9,15 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 //---------------------------------------------------
+/*
+var logFilePath = $"{Path.GetTempPath()}/Logs/app-{DateTime.Now.ToString("mmss")}.txt";
+
+// Configure logging to log to both console and file
+builder.Logging.ClearProviders();
+builder.Logging.AddConsole();
+//builder.Logging.AddFile("%TEMP%/Logs/app-{Date}.txt"); // Requires Serilog.Extensions.Logging.File package
+builder.Logging.AddProvider(new FileLoggerProvider(logFilePath)); //"%TEMP%/Logs/app-{Date}.txt"
+*/
 
 //Add HTTP Logging Middleware - specifying which parts of the HTTP request and response to log.
 builder.Services.AddHttpLogging(logging =>
@@ -21,15 +29,6 @@ builder.Services.AddHttpLogging(logging =>
     //logging.ResponseBodyLogLimit = 4096;
     //logging.CombineLogs = true;
 });
-
-// Configure logging to log to both console and file
-var logFilePath = $"{Path.GetTempPath()}/Logs/http-requests.log";//"%TEMP%
-builder.Logging.ClearProviders(); //Clear existing providers(if needed)
-builder.Logging.AddConfiguration(builder.Configuration.GetSection("Logging"));
-builder.Logging.AddConsole();
-//builder.Logging.AddFile(logFilePath); // Requires Serilog.Extensions.Logging.File package
-builder.Logging.AddProvider(new FileLoggerProvider(logFilePath));
-
 
 //---------------------------------------------------
 
