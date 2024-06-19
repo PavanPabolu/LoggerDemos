@@ -3,7 +3,7 @@ using Microsoft.Extensions.Logging.ApplicationInsights;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
-namespace Logger.AzureApplicationInsight.WebAPI
+namespace Logger.AzureApplicationInsight.WebAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
@@ -20,8 +20,8 @@ namespace Logger.AzureApplicationInsight.WebAPI
         [HttpGet]
         public IEnumerable<string> Get()
         {
-            
-            
+
+
             _logger.LogInformation("This is test message from Logger.AzureApplication.WebAPI controller - {DT}.", DateTime.UtcNow.ToLongTimeString());
             _logger.LogWarning("An example of a Warning trace..");
             _logger.LogError("An example of an Error level message");
