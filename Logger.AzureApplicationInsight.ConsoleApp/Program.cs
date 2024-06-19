@@ -24,14 +24,16 @@ try
             );
     });
 
-  
+    services.AddScoped<Sample>();
 
     //After the service collection ready, build to get the service provider
     IServiceProvider serviceProvider = services.BuildServiceProvider();
-    ILogger<Program> logger = serviceProvider.GetRequiredService<ILogger<Program>>();
 
+    ILogger<Program> logger = serviceProvider.GetRequiredService<ILogger<Program>>();
     logger.LogInformation("Logger is working at Console application too.");
 
+    var samp = serviceProvider.GetRequiredService<Sample>();
+    samp.PerformOperation();
 
 }
 finally
@@ -54,6 +56,7 @@ public class Sample
 
     public void PerformOperation()
     {
-        _logger.LogWarning("Sample class - PerformOperation method called");
+        _logger.LogInformation("Sample class - PerformOperation method called.");
+        _logger.LogWarning("Sample class - PerformOperation method called.");
     }
 }
