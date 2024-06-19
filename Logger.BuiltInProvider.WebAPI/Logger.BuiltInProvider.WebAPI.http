@@ -1,0 +1,6 @@
+@Logger.BuiltInProvider.WebAPI_HostAddress = http://localhost:5236
+
+GET {{Logger.BuiltInProvider.WebAPI_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
