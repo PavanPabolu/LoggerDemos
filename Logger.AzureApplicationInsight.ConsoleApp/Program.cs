@@ -41,7 +41,7 @@ try
             //register log providers
             builder.AddApplicationInsights(
                 configureTelemetryConfiguration: (config) => config.ConnectionString = aiConnectionString,
-                configureApplicationInsightsLoggerOptions: (options) => { }
+                configureApplicationInsightsLoggerOptions: (options) => { } //options.TrackExceptionsAsExceptionTelemetry = false;
             );
             builder.AddConsole(); //dotnet add package Microsoft.Extensions.Logging.Console
         })
@@ -50,7 +50,7 @@ try
 
 
     ILogger<Program> logger = serviceProvider.GetRequiredService<ILogger<Program>>();
-    logger.LogWarning("Logger from the ConsoleApp-Program.");
+    logger.LogWarning($"Logger from the ConsoleApp-Program.[{DateTime.Now.ToShortTimeString()}]");
 
     //concrete class method call
     var samp = serviceProvider.GetRequiredService<Sample>();
@@ -58,6 +58,10 @@ try
 
     //helper class method call
     LoggingHelper.LogSomeMessages(logger);
+
+    //for ExceptionTelemetry
+    var x = 0;
+    var y = 10 / x;
 }
 finally
 {
