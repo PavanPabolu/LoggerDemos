@@ -4,6 +4,8 @@ https://learn.microsoft.com/en-us/azure/azure-monitor/app/ilogger?tabs=dotnet6#:
 To add Application Insights logging to console applications, first install the following NuGet packages:
 - Microsoft.Extensions.Logging.ApplicationInsights
 - Microsoft.Extensions.DependencyInjection
+- Microsoft.Extensions.Logging.Console <-- add explicitly for console logs.
+
 
 The following example uses the Microsoft.Extensions.Logging.ApplicationInsights package and demonstrates 
 the default behavior for a console application. The Microsoft.Extensions.Logging.ApplicationInsights package 

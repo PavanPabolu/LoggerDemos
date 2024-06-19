@@ -7,12 +7,13 @@ using Microsoft.Extensions.Logging;
 
 Console.WriteLine("Hello, World!");
 
-const string aiConnectionString = "InstrumentationKey=04caef53-d39a-4b91-bf4c-1c9b1182ebeq;IngestionEndpoint=https://eastus-8.in.applicationinsights.azure.com/;LiveEndpoint=https://eastus.livediagnostics.monitor.azure.com/;ApplicationId=9464baee-0c4c-466e-95bd-2f52a9e1192f";
+const string aiConnectionString = "InstrumentationKey=04caef53-d39a-4b91-bf4c-1c9b1182ebef;IngestionEndpoint=https://eastus-8.in.applicationinsights.azure.com/;LiveEndpoint=https://eastus.livediagnostics.monitor.azure.com/;ApplicationId=9464baee-0c4c-466e-95bd-2f52a9e1192f";
 
 using var channel = new InMemoryChannel(); //Microsoft.ApplicationInsights.Channel
 
 try
 {
+    /*
     IServiceCollection services = new ServiceCollection();
     services.Configure<TelemetryConfiguration>(config => config.TelemetryChannel = channel);
     services.AddLogging(builder =>
@@ -22,19 +23,41 @@ try
             configureTelemetryConfiguration:(config) => config.ConnectionString = aiConnectionString,
             configureApplicationInsightsLoggerOptions: (options) => { }
             );
+        builder.AddConsole(); //dotnet add package Microsoft.Extensions.Logging.Console
     });
-
     services.AddScoped<Sample>();
 
-    //After the service collection ready, build to get the service provider
+    //Configure the logging provider - After the service collection ready, build to get the service provider
     IServiceProvider serviceProvider = services.BuildServiceProvider();
+    */
+
+    //OR
+
+    // Configure the logging provider
+    var serviceProvider = new ServiceCollection()
+        .Configure<TelemetryConfiguration>(config => config.TelemetryChannel = channel)        
+        .AddLogging(builder =>
+        {
+            //register log providers
+            builder.AddApplicationInsights(
+                configureTelemetryConfiguration: (config) => config.ConnectionString = aiConnectionString,
+                configureApplicationInsightsLoggerOptions: (options) => { }
+            );
+            builder.AddConsole(); //dotnet add package Microsoft.Extensions.Logging.Console
+        })
+        .AddScoped<Sample>()
+        .BuildServiceProvider();
+
 
     ILogger<Program> logger = serviceProvider.GetRequiredService<ILogger<Program>>();
-    logger.LogInformation("Logger is working at Console application too.");
+    logger.LogWarning("Logger from the ConsoleApp-Program.");
 
+    //concrete class method call
     var samp = serviceProvider.GetRequiredService<Sample>();
     samp.PerformOperation();
 
+    //helper class method call
+    LoggingHelper.LogSomeMessages(logger);
 }
 finally
 {
@@ -45,6 +68,7 @@ finally
     await Task.Delay(TimeSpan.FromMilliseconds(1000));
 }
 
+//Concrete class
 public class Sample
 {
     private readonly ILogger<Sample> _logger;
@@ -60,3 +84,17 @@ public class Sample
         _logger.LogWarning("Sample class - PerformOperation method called.");
     }
 }
+
+//Helper class
+public static class LoggingHelper
+{
+    public static void LogSomeMessages(ILogger logger)
+    {
+        logger.LogDebug("This is a debug message.");
+        logger.LogInformation("This is an informational message.");
+        logger.LogWarning("This is a warning message.");
+        logger.LogError("This is an error message.");
+        logger.LogCritical("This is a critical message.......");
+    }
+}
+
