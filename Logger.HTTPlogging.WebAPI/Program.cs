@@ -53,7 +53,7 @@ app.MapControllers();
 
 //---------------------------------------------------
 /*
-// Set up logging
+// Set up logging for current class usage.
 var logger = LoggerFactory.Create(builder =>
 {
     builder.AddConsole()
