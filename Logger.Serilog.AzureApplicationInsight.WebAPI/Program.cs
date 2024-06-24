@@ -30,6 +30,14 @@ builder.Services.AddScoped<HelperService>();
 
 builder.Services.AddCors(options =>
 {
+    //options.AddDefaultPolicy(
+    //    builder =>
+    //    {
+    //        builder.WithOrigins("https://localhost:7280") // Replace with the specific Blazor app's URL
+    //               .AllowAnyHeader()
+    //               .AllowAnyMethod();
+    //    });
+
     options.AddPolicy("AllowAllOrigins",
         builder =>
         {
