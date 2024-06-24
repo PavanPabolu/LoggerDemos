@@ -28,6 +28,17 @@ builder.Host.UseSerilog((context, services, configuration) => configuration
 builder.Services.AddControllers();
 builder.Services.AddScoped<HelperService>();
 
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowAllOrigins",
+        builder =>
+        {
+            builder.AllowAnyOrigin()
+            .AllowAnyMethod()
+            .AllowAnyHeader();
+        });
+});
+
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
@@ -45,13 +56,18 @@ app.UseHttpsRedirection();
 
 app.UseAuthorization();
 
+
+app.UseCors("AllowAllOrigins");
+
+
 app.MapControllers();
 
 // Minimal API endpoint
 app.MapGet("/minimalapi", (ILogger<Program> logger) =>
 {
-    logger.LogInformation($"{logger.GetType()} - This is a log from minimal API endpoint.");
-    Log.Information($"{Log.Logger.GetType()} - This is a log from minimal API endpoint.");
+    logger.LogInformation($"[Info] This is a log from minimal API endpoint. - {logger.GetType()}");
+    Log.Information($"[Info] This is a log from minimal API endpoint. - {Log.Logger.GetType()}");
+    Log.Warning($"[Warning] This is a log from minimal API endpoint.");
 
     return Results.Ok("Hello from minimal API");
 });
