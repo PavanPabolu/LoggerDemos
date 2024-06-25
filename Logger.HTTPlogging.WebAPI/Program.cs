@@ -11,10 +11,14 @@ builder.Services.AddSwaggerGen();
 //---------------------------------------------------
 
 //Add HTTP Logging Middleware - specifying which parts of the HTTP request and response to log.
+//Calling AddHttpLogging with an empty lambda, adds the middleware with the default configuration.
+//By default, HTTP logging logs common properties such as path, status-code, and headers for requests and responses. //https://learn.microsoft.com/en-us/aspnet/core/fundamentals/http-logging/?view=aspnetcore-8.0
+//builder.Services.AddHttpLogging(logging => { });
 builder.Services.AddHttpLogging(logging =>
 {
     logging.LoggingFields = HttpLoggingFields.All; //Microsoft.AspNetCore.HttpLogging
     logging.ResponseHeaders.Add("MyResponseHeader");
+    //logging.MediaTypeOptions.AddText("application/x-www-form-urlencoded");
     //logging.MediaTypeOptions.AddText("application/javascript");
     //logging.RequestBodyLogLimit = 4096; // Log up to 4KB of the request body
     //logging.ResponseBodyLogLimit = 4096;
@@ -76,13 +80,15 @@ app.Use(async (context, next) =>
 
 app.MapGet("/", () => "\n\nHello World! This is Http-Logging.");
 
-//For endpoint-specific configuration in minimal API apps
+//For endpoint-specific configuration in minimal API apps, means to configure HTTP logging for one endpoint.
 app.MapGet("/response", () => "Hello World! (logging response)")
     .WithHttpLogging(HttpLoggingFields.ResponsePropertiesAndHeaders);
 
-//For endpoint-specific configuration in apps that use controllers,
+//For endpoint-specific configuration in apps that use controllers and also be used in minimal API apps.
 app.MapGet("/duration", [HttpLogging(loggingFields: HttpLoggingFields.Duration)]
 () => "Hello World! (logging duration)");
+
+//IHttpLoggingInterceptor - a service that can be implemented to handle per-request and per-response callbacks for customizing what details get logged.
 
 //---------------------------------------------------
 
