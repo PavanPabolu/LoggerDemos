@@ -1,3 +1,4 @@
+using Logger.AzureApplicationInsight.UsageMonitor.WebApp.Common.Middlewares;
 using Microsoft.ApplicationInsights;
 using Microsoft.ApplicationInsights.Extensibility;
 
@@ -9,7 +10,7 @@ builder.Services.AddControllersWithViews();
 //-----------------------------------------------
 
 builder.Services.AddApplicationInsightsTelemetry();
-
+builder.Services.AddTransient<ApplicationInsightsMiddleware>();
 //-----------------------------------------------
 
 //You can call the Application Insights trace API directly. The logging adapters use this API.
@@ -44,6 +45,9 @@ app.MapControllerRoute(
 
 
 //-----------------------------------------------
+
+app.UseMiddleware<ApplicationInsightsMiddleware>();
+
 
 app.Logger.LogInformation("Program/Main - Startup");
 app.Logger.LogTrace("Program/Main - Startup");

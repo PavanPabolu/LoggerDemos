@@ -19,13 +19,13 @@ namespace Logger.AzureApplicationInsight.UsageMonitor.WebApp.Controllers
 
         public IActionResult Index()
         {
-            _telemetryClient.TrackPageView("Home/Index Page..!");
+            //_telemetryClient.TrackPageView("Home/Index Page..!");
             return View();
         }
 
         public IActionResult Privacy()
         {
-            _telemetryClient.TrackPageView("Home/Privacy Page..!");
+            //_telemetryClient.TrackPageView("Home/Privacy Page..!");
             return View();
         }
 
