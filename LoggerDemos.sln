@@ -21,6 +21,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Logger.AzureApplicationInsi
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Logger.AzureApplicationInsight.Analytics.ServerSide.WebApp", "Logger.AzureApplicationInsight.Analytics.ServerSide.WebApp\Logger.AzureApplicationInsight.Analytics.ServerSide.WebApp.csproj", "{575EB2B9-A9CD-494B-8BA0-D411FFA32065}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Logger.AzureApplicationInsight.AsConnectedService", "Logger.AzureApplicationInsight.AsConnectedService\Logger.AzureApplicationInsight.AsConnectedService.csproj", "{ACFE1AB7-5890-45B9-8559-60315E5EB238}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -63,6 +65,10 @@ Global
 		{575EB2B9-A9CD-494B-8BA0-D411FFA32065}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{575EB2B9-A9CD-494B-8BA0-D411FFA32065}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{575EB2B9-A9CD-494B-8BA0-D411FFA32065}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ACFE1AB7-5890-45B9-8559-60315E5EB238}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ACFE1AB7-5890-45B9-8559-60315E5EB238}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ACFE1AB7-5890-45B9-8559-60315E5EB238}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ACFE1AB7-5890-45B9-8559-60315E5EB238}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
