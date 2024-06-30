@@ -4,6 +4,12 @@
     <TargetFramework>net8.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
+    <ApplicationInsightsResourceId>/subscriptions/5c9c3d3a-8ad5-45e1-9eb7-4456e7903615/resourceGroups/rg-demo/providers/microsoft.insights/components/ai-app-demo-instance</ApplicationInsightsResourceId>
+    <UserSecretsId>1a93e939-3a37-4b73-a9dd-42bdf40bc11c</UserSecretsId>
   </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.ApplicationInsights.AspNetCore" Version="2.21.0" />
+  </ItemGroup>
 
 </Project>
