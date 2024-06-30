@@ -38,7 +38,12 @@ namespace Logger.AzureApplicationInsight.Analytics.ServerSide.WebApp.Controllers
         [HttpPost]
         public IActionResult SubmitForm()
         {
-            _telemetryClient.TrackEvent("Form Submitted.");
+            // Track button click event
+            //_telemetryClient.TrackEvent("Form Submitted.");
+            _telemetryClient.TrackEvent("Form Submit Button Clicked", new Dictionary<string, string>
+            {
+                { "ButtonName", "btn-1" }
+            });
 
             return RedirectToAction("Index");
         }

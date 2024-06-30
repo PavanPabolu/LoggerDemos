@@ -15,6 +15,7 @@ namespace Logger.AzureApplicationInsight.Analytics.ClientSide.WebApp.Controllers
 
         public IActionResult Index()
         {
+            //_telemetryClient.TrackPageView("Home/Index Page..!");
             return View();
         }
 
@@ -27,6 +28,14 @@ namespace Logger.AzureApplicationInsight.Analytics.ClientSide.WebApp.Controllers
         public IActionResult Error()
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+        }
+
+        [HttpPost]
+        public IActionResult SubmitForm()
+        {
+            //_telemetryClient.TrackEvent("Form Submitted.");
+
+            return RedirectToAction("Index");
         }
     }
 }

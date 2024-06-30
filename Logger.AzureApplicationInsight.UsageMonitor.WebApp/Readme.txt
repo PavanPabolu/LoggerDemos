@@ -6,6 +6,5 @@ Microsoft.Extensions.DependencyInjection;
 Microsoft.Extensions.Logging;
 
 
-https://chatgpt.com/c/62b41be9-1590-4927-b4f5-b952dba64404
-https://www.perplexity.ai/search/write-a-simple-Eyf0a7i0QPOhAD.s6Nu9xw
 
+https://www.perplexity.ai/search/write-a-simple-Eyf0a7i0QPOhAD.s6Nu9xw#:~:text=AboutClicked%22)%3B%0A%0A%20%20%20%20%20%20%20%20return%20View()%3B%0A%20%20%20%20%7D%0A%7D-,_Layout.cshtml,-html

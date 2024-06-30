@@ -1,4 +1,11 @@
 ﻿
+
+@using Microsoft.Extensions.Configuration
+@inject IConfiguration Configuration
+
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -45,6 +52,15 @@
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
+
+
+    @* -------------------------------------------- *@
+    <script>
+        var appIns_constr = '@Configuration["ApplicationInsights:ConnectionString"]';
+    </script>
+    <script src="~/js/custom-appinsights.js"></script>
+    @* -------------------------------------------- *@
+
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>
