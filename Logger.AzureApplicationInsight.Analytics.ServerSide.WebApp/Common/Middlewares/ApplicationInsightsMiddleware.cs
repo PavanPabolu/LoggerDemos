@@ -31,37 +31,35 @@ namespace Logger.AzureApplicationInsight.Analytics.ServerSide.WebApp.Common.Midd
 
         public async Task InvokeAsync(HttpContext context, RequestDelegate next)
         {
-            //Track PAge view
-            _telemetryClient.TrackPageView($"Page view [Middleware]: {context.Request.Path}");
+            try
+            {
+                //Track PAge view
+                //_telemetryClient.TrackPageView($"Page view [Middleware]: {context.Request.Path}");
 
-            // Detect device type
-            var deviceType = DeviceDetector.GetDeviceType(context.Request);
+                // Detect device type
+                var deviceType = DeviceDetector.GetDeviceType(context.Request);
+                // Track page view with device type
+                var pageViewTelemetry = new PageViewTelemetry($"Page view [Middleware]: {context.Request.Path}");
+                pageViewTelemetry.Properties["DeviceType"] = deviceType;//Under CustomDimensions
+                _telemetryClient.TrackPageView(pageViewTelemetry);
 
-            //// Track page view with device type
-            //var pageViewTelemetry = new PageViewTelemetry(context.Request.Path)
-            //{
-            //    Properties = new Dictionary<string, string> {{ "DeviceType", deviceType }}
-            //};
 
-            // Track page view with device type
-            var pageViewTelemetry = new PageViewTelemetry(context.Request.Path);
-            pageViewTelemetry.Context.Properties["DeviceType"] = deviceType;
+                //Call the next middleware in the pipeline
+                var stopwatch = Stopwatch.StartNew();
+                await next(context);
+                stopwatch.Stop();
 
-            _telemetryClient.TrackPageView(pageViewTelemetry);
+                //Track Page Load time
+                context.Items["PageLoadTime"] = stopwatch.ElapsedMilliseconds;
 
-           
-            //Call the next middleware in the pipeline
-            var stopwatch = Stopwatch.StartNew();
-            await next(context);
-            stopwatch.Stop();
-
-            //Track Page Load time
-            context.Items["PageLoadTime"] = stopwatch.ElapsedMilliseconds;
-
-            var pageLoadTime = context.Items["PageLoadTime"] as double?;
-            if (pageLoadTime.HasValue)
-                _telemetryClient.TrackMetric("Page Load Time [Middleware]", pageLoadTime.Value);
-
+                var pageLoadTime = context.Items["PageLoadTime"] as double?;
+                if (pageLoadTime.HasValue)
+                    _telemetryClient.TrackMetric("Page Load Time [Middleware]", pageLoadTime.Value);
+            }
+            catch (Exception ex)
+            {
+                _telemetryClient.TrackException(ex);
+            }
         }
     }
 }
