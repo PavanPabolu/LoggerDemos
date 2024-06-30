@@ -1,8 +1,13 @@
 ﻿// appInsights.js
 (function () {
+    // Load Application-Insights script library
     var script = document.createElement('script');
     script.src = 'https://az416426.vo.msecnd.net/scripts/a/ai.0.js';
+    script.async = true;
+    document.getElementsByTagName('head')[0].appendChild(script);
+
     script.onload = function () {
+        // Initialize Application Insights
         var appInsights = window.appInsights || function (config) {
             function trackEvent(eventName, properties, measurements) {
                 appInsights.queue.push(function () {
