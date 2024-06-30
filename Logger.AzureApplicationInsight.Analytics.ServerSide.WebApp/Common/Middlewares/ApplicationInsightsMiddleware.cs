@@ -1,5 +1,6 @@
 ﻿
 using Microsoft.ApplicationInsights;
+using Microsoft.ApplicationInsights.DataContracts;
 using System.Diagnostics;
 
 namespace Logger.AzureApplicationInsight.Analytics.ServerSide.WebApp.Common.Middlewares
@@ -33,6 +34,22 @@ namespace Logger.AzureApplicationInsight.Analytics.ServerSide.WebApp.Common.Midd
             //Track PAge view
             _telemetryClient.TrackPageView($"Page view [Middleware]: {context.Request.Path}");
 
+            // Detect device type
+            var deviceType = DeviceDetector.GetDeviceType(context.Request);
+
+            //// Track page view with device type
+            //var pageViewTelemetry = new PageViewTelemetry(context.Request.Path)
+            //{
+            //    Properties = new Dictionary<string, string> {{ "DeviceType", deviceType }}
+            //};
+
+            // Track page view with device type
+            var pageViewTelemetry = new PageViewTelemetry(context.Request.Path);
+            pageViewTelemetry.Context.Properties["DeviceType"] = deviceType;
+
+            _telemetryClient.TrackPageView(pageViewTelemetry);
+
+           
             //Call the next middleware in the pipeline
             var stopwatch = Stopwatch.StartNew();
             await next(context);
