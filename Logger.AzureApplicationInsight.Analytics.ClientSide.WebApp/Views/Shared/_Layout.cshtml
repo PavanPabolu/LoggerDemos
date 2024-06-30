@@ -15,6 +15,14 @@
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/Logger.AzureApplicationInsight.Analytics.ClientSide.WebApp.styles.css" asp-append-version="true" />
+    
+    @* -------------------------------------------- *@
+    @* @Html.Raw(JavaScriptSnippet.FullScript) *@
+    <script>
+        var appIns_constr = '@Configuration["ApplicationInsights:ConnectionString"]';
+    </script>
+    <script src="~/js/custom-appinsights.js"></script>
+    @* -------------------------------------------- *@
 </head>
 <body>
     <header>
@@ -54,12 +62,7 @@
     <script src="~/js/site.js" asp-append-version="true"></script>
 
 
-    @* -------------------------------------------- *@
-    <script>
-        var appIns_constr = '@Configuration["ApplicationInsights:ConnectionString"]';
-    </script>
-    <script src="~/js/custom-appinsights.js"></script>
-    @* -------------------------------------------- *@
+
 
     @await RenderSectionAsync("Scripts", required: false)
 </body>

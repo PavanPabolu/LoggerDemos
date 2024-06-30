@@ -23,6 +23,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Logger.AzureApplicationInsi
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Logger.AzureApplicationInsight.AsConnectedService", "Logger.AzureApplicationInsight.AsConnectedService\Logger.AzureApplicationInsight.AsConnectedService.csproj", "{ACFE1AB7-5890-45B9-8559-60315E5EB238}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{1A7625C6-4850-43C6-ACED-2A8323E34733}"
+	ProjectSection(SolutionItems) = preProject
+		Readme-ApplicationInsight Telemetry.txt = Readme-ApplicationInsight Telemetry.txt
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
