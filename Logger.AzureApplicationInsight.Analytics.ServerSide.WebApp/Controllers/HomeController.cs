@@ -39,13 +39,31 @@ namespace Logger.AzureApplicationInsight.Analytics.ServerSide.WebApp.Controllers
         public IActionResult SubmitForm()
         {
             // Track button click event
-            //_telemetryClient.TrackEvent("Form Submitted.");
+            _telemetryClient.TrackEvent("Form Submitted.");
             _telemetryClient.TrackEvent("Form Submit Button Clicked", new Dictionary<string, string>
             {
                 { "ButtonName", "btn-1" }
             });
 
             return RedirectToAction("Index");
+        }
+
+
+
+
+        [Route("random")]
+        [HttpGet]
+        [HttpOptions]
+        public async Task<IActionResult> Delay()
+        {
+            var random = new Random();
+            var num = random.Next(10, 10000);
+
+            await Task.Delay(num);
+
+            if (num > 9990) throw new Exception("Random number is greater than 9990");
+
+            return Ok(num);
         }
     }
 }

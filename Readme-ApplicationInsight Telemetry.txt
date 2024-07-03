@@ -30,9 +30,22 @@ App Insights Demo: Live demos
 - Querying application telemetry logs
 - Code-less monitoring
 
+Custom Events: 
+Ex:
+
+
+Custom Metric: A "metric" is a number that we want to track over time. 
+Ex: 
+- API calls by plan type,
+- CPU/Memory Usage
+- Harddisk usage
+- Active users on the system
 
 
 Reference Links:
 Azure Application Insights Tutorial | Amazing telemetry service
 https://www.youtube.com/watch?v=A0jAeGf2zUQ
+
+Custom Events and Metrics :: Application Insights (5 of 6)
+https://www.youtube.com/watch?v=jhepPNaaiyw
 

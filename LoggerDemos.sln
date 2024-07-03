@@ -13,22 +13,20 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Logger.BuiltInProvider.WebA
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Logger.AzureApplicationInsight.ConsoleApp", "Logger.AzureApplicationInsight.ConsoleApp\Logger.AzureApplicationInsight.ConsoleApp.csproj", "{41178E88-E1CF-408B-8DB6-7B561BFE3073}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Logger.AzureApplicationInsight.WebAppClientSide", "Logger.AzureApplicationInsight.WebAppClientSide\Logger.AzureApplicationInsight.WebAppClientSide.csproj", "{0159A30F-2F28-4862-BF93-84B3DC70AE76}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Logger.HTTPlogging.WebAPI", "Logger.HTTPlogging.WebAPI\Logger.HTTPlogging.WebAPI.csproj", "{4CDC9F9B-1020-4D47-B2DC-D65C6C872AA9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Logger.AzureApplicationInsight.Analytics.ClientSide.WebApp", "Logger.AzureApplicationInsight.Analytics.ClientSide.WebApp\Logger.AzureApplicationInsight.Analytics.ClientSide.WebApp.csproj", "{60CF8767-BFA8-4DA0-B23B-08C54E4805A1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Logger.AzureApplicationInsight.Analytics.ClientSide.WebApp", "Logger.AzureApplicationInsight.Analytics.ClientSide.WebApp\Logger.AzureApplicationInsight.Analytics.ClientSide.WebApp.csproj", "{60CF8767-BFA8-4DA0-B23B-08C54E4805A1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Logger.AzureApplicationInsight.Analytics.ServerSide.WebApp", "Logger.AzureApplicationInsight.Analytics.ServerSide.WebApp\Logger.AzureApplicationInsight.Analytics.ServerSide.WebApp.csproj", "{575EB2B9-A9CD-494B-8BA0-D411FFA32065}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Logger.AzureApplicationInsight.Analytics.ServerSide.WebApp", "Logger.AzureApplicationInsight.Analytics.ServerSide.WebApp\Logger.AzureApplicationInsight.Analytics.ServerSide.WebApp.csproj", "{575EB2B9-A9CD-494B-8BA0-D411FFA32065}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Logger.AzureApplicationInsight.AsConnectedService", "Logger.AzureApplicationInsight.AsConnectedService\Logger.AzureApplicationInsight.AsConnectedService.csproj", "{ACFE1AB7-5890-45B9-8559-60315E5EB238}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Logger.AzureApplicationInsight.AsConnectedService", "Logger.AzureApplicationInsight.AsConnectedService\Logger.AzureApplicationInsight.AsConnectedService.csproj", "{ACFE1AB7-5890-45B9-8559-60315E5EB238}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{1A7625C6-4850-43C6-ACED-2A8323E34733}"
 	ProjectSection(SolutionItems) = preProject
 		Readme-ApplicationInsight Telemetry.txt = Readme-ApplicationInsight Telemetry.txt
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Logger.Serilog.AzureApplicationInsight.ConsoleApp", "Logger.Serilog.AzureApplicationInsight.ConsoleApp\Logger.Serilog.AzureApplicationInsight.ConsoleApp.csproj", "{0654D22D-5D9B-469A-B02C-849B907F1E00}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Logger.Serilog.AzureApplicationInsight.ConsoleApp", "Logger.Serilog.AzureApplicationInsight.ConsoleApp\Logger.Serilog.AzureApplicationInsight.ConsoleApp.csproj", "{0654D22D-5D9B-469A-B02C-849B907F1E00}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -56,10 +54,6 @@ Global
 		{41178E88-E1CF-408B-8DB6-7B561BFE3073}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{41178E88-E1CF-408B-8DB6-7B561BFE3073}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{41178E88-E1CF-408B-8DB6-7B561BFE3073}.Release|Any CPU.Build.0 = Release|Any CPU
-		{0159A30F-2F28-4862-BF93-84B3DC70AE76}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{0159A30F-2F28-4862-BF93-84B3DC70AE76}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{0159A30F-2F28-4862-BF93-84B3DC70AE76}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{0159A30F-2F28-4862-BF93-84B3DC70AE76}.Release|Any CPU.Build.0 = Release|Any CPU
 		{4CDC9F9B-1020-4D47-B2DC-D65C6C872AA9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{4CDC9F9B-1020-4D47-B2DC-D65C6C872AA9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4CDC9F9B-1020-4D47-B2DC-D65C6C872AA9}.Release|Any CPU.ActiveCfg = Release|Any CPU
