@@ -4,16 +4,17 @@ using Microsoft.ApplicationInsights.Extensibility;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
 builder.Services.AddControllersWithViews();
 
 //-----------------------------------------------
 
 builder.Services.AddApplicationInsightsTelemetry();
 builder.Services.AddTransient<ApplicationInsightsMiddleware>();
+
+
 //-----------------------------------------------
 
-//You can call the Application Insights trace API directly. The logging adapters use this API.
+//We can call the Application Insights trace API directly. The logging adapters use this API.
 //https://learn.microsoft.com/en-us/azure/azure-monitor/app/asp-net-trace-logs#:~:text=Use%20the%20Trace%20API%20directly
 var telemetryConfig = TelemetryConfiguration.CreateDefault();
 var telemetryClient = new TelemetryClient(telemetryConfig);
