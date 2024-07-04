@@ -28,6 +28,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Logger.Serilog.AzureApplicationInsight.ConsoleApp", "Logger.Serilog.AzureApplicationInsight.ConsoleApp\Logger.Serilog.AzureApplicationInsight.ConsoleApp.csproj", "{0654D22D-5D9B-469A-B02C-849B907F1E00}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Logger.AzureApplicationInsight.Analytics.UserIdentity.WebApp", "Logger.AzureApplicationInsight.Analytics.UserIdentity.WebApp\Logger.AzureApplicationInsight.Analytics.UserIdentity.WebApp.csproj", "{4A0F03FB-8900-4EFD-B2B2-130436862BCB}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -74,6 +76,10 @@ Global
 		{0654D22D-5D9B-469A-B02C-849B907F1E00}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0654D22D-5D9B-469A-B02C-849B907F1E00}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0654D22D-5D9B-469A-B02C-849B907F1E00}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4A0F03FB-8900-4EFD-B2B2-130436862BCB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4A0F03FB-8900-4EFD-B2B2-130436862BCB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4A0F03FB-8900-4EFD-B2B2-130436862BCB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4A0F03FB-8900-4EFD-B2B2-130436862BCB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
