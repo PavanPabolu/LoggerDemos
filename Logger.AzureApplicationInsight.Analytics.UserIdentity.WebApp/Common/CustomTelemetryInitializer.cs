@@ -1,4 +1,5 @@
-﻿using Microsoft.ApplicationInsights.Channel;
+﻿using Logger.AzureApplicationInsight.Analytics.UserIdentity.WebApp.Controllers;
+using Microsoft.ApplicationInsights.Channel;
 using Microsoft.ApplicationInsights.DataContracts;
 using Microsoft.ApplicationInsights.Extensibility;
 using System.Security.Claims;
@@ -32,8 +33,12 @@ namespace Logger.AzureApplicationInsight.Analytics.UserIdentity.WebApp.Common
                 if (!string.IsNullOrEmpty(userId))
                 {
                     telemetry.Context.User.Id = userId;
+                    telemetry.Context.User.AuthenticatedUserId = userId;
+                    //requestTelemetry.Properties["UserId"] = httpContext.User.Identity.Name;
                 }
             }
+
+            AddTelemetry_CustomProperties(telemetry);
         }
 
         private void AddTelemetry_ContextPropertyFromClaims(ITelemetry telemetry, string claimName)
@@ -57,7 +62,7 @@ namespace Logger.AzureApplicationInsight.Analytics.UserIdentity.WebApp.Common
             }
         }
 
-        private void AddTelemetry_CustomProperty(ITelemetry telemetry)//, string propName, string propValue)
+        private void AddTelemetry_CustomProperties(ITelemetry telemetry)
         {
             var requestTelemetry = telemetry as RequestTelemetry;
 
@@ -68,13 +73,17 @@ namespace Logger.AzureApplicationInsight.Analytics.UserIdentity.WebApp.Common
 
             if (httpContext != null)
             {
-                var propVal = (string)httpContext.Items["MyCustomProp"];
-
-                if (propVal != null)
-                {
-                    requestTelemetry.Properties["MyCustomProp"] = propVal;
-                }
+                //requestTelemetry.Properties["MyCustomProp"] = (string)httpContext.Items["MyCustomProp"];
+                requestTelemetry.Properties["User-Agent"] = httpContext.Request.Headers["User-Agent"];
+                requestTelemetry.Properties["RemoteIp"] = httpContext.Connection.RemoteIpAddress.ToString();
             }
+
+            //session
+            //if (httpContext != null && httpContext?.Session != null)
+            //{
+            //    var sessionData = httpContext.Session.Get("CustomData");
+            //    requestTelemetry.Properties["SessionData"] = sessionData?.ToString();
+            //}
         }
 
     }
