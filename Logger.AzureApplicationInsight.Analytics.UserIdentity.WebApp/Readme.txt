@@ -4,6 +4,7 @@ Nuget:
 //.netcore
 Install-Package Microsoft.ApplicationInsights.AspNetCore
 Install-Package Microsoft.ApplicationInsights.DependencyCollector
+Install-Package xunit
 //dotnet
 dotnet add <project_name> package Microsoft.ApplicationInsights.AspNetCore
 dotnet add <project_name> package Microsoft.ApplicationInsights.DependencyCollector

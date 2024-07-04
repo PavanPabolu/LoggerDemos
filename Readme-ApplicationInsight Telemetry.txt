@@ -54,4 +54,7 @@ https://www.youtube.com/watch?v=jhepPNaaiyw
 Enable Application Insights server-side telemetry (no Visual Studio)
 https://learn.microsoft.com/en-us/azure/azure-monitor/app/asp-net-core?tabs=netcorenew#enable-application-insights-server-side-telemetry-no-visual-studio
 
+HttpContext and TelemetryInitializer
+https://www.iditect.com/faq/csharp/httpcontext-and-telemetryinitializer.html
+
 -------------------------------------------------------------------------------------------------------------
