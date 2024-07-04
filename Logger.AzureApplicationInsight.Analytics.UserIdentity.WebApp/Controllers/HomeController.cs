@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 using System.Security.Claims;
 using Xunit;
+using static Microsoft.ApplicationInsights.MetricDimensionNames.TelemetryContext;
 
 namespace Logger.AzureApplicationInsight.Analytics.UserIdentity.WebApp.Controllers
 {
@@ -19,10 +20,11 @@ namespace Logger.AzureApplicationInsight.Analytics.UserIdentity.WebApp.Controlle
             _httpContextAccessor = httpContextAccessor;
         }
 
-        //[Authorize]
+        [Authorize]
         public IActionResult Index()
         {
-            var name = User.Identity.Name;
+            var name = this.HttpContext.User.Identity.Name;
+            var name2 = this._httpContextAccessor.HttpContext.User.Identity.Name;
 
             return View();
         }
@@ -46,11 +48,7 @@ namespace Logger.AzureApplicationInsight.Analytics.UserIdentity.WebApp.Controlle
 
         public IActionResult LoginFake()
         {
-            //Test1();
             Test2();
-            //Test3();
-            //Test4();       
-
             var name = User.Identity.Name;
 
             if (name != null)
@@ -81,7 +79,7 @@ namespace Logger.AzureApplicationInsight.Analytics.UserIdentity.WebApp.Controlle
         public void Test2()
         {
             var obj1 = new FakeIdentityUser(_httpContextAccessor);
-            obj1.Set_UserIdentityToHttpContext(_httpContextAccessor.HttpContext, true);
+            obj1.Set_UserIdentityToHttpContext(this._httpContextAccessor.HttpContext, true);
             var name1 = User.Identity.Name;
         }
 
@@ -96,9 +94,17 @@ namespace Logger.AzureApplicationInsight.Analytics.UserIdentity.WebApp.Controlle
         [Fact]
         public void Test4()
         {
+            ////var logger = new NullLogger<HomeController>();
+            ////var controller = new HomeController(logger);
+            //var controller = new FakeController();
+            //controller.ControllerContext = new ControllerContext()
+            //{
+            //    HttpContext = new DefaultHttpContext { User = user }
+            //};
             var obj = new FakeIdentityUser(null);
             obj.Set_UserIdentityToHttpContext(this.HttpContext, true);
             var name = User.Identity.Name;
+            this.HttpContext.User = User;
         }
 
     }
