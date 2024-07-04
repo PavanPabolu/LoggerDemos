@@ -57,24 +57,7 @@ namespace Logger.AzureApplicationInsight.Analytics.UserIdentity.WebApp.Controlle
                 return RedirectToAction("Login", "Home");
         }
 
-        [Fact]
-        public void Test1()
-        {
-            var userProfile = new ClaimsPrincipal(new ClaimsIdentity(
-                                    new Claim[]
-                                    {
-                                        new Claim(ClaimTypes.Name, "testUser"),
-                                        new Claim(ClaimTypes.NameIdentifier,$"testUser{DateTime.Now.ToString("yyyyMMddHH")}"),
-                                        new Claim("Email","testuser@abc.com"),
-                                        new Claim("Mobile","9988776655", ClaimValueTypes.Integer64),
-                                    }, "TestAuthentication"));
-
-            var httpContext = _httpContextAccessor.HttpContext;
-            if (httpContext != null)
-                httpContext.User = userProfile;
-
-        }
-
+        
         [Fact]
         public void Test2()
         {
@@ -94,18 +77,40 @@ namespace Logger.AzureApplicationInsight.Analytics.UserIdentity.WebApp.Controlle
         [Fact]
         public void Test4()
         {
-            ////var logger = new NullLogger<HomeController>();
-            ////var controller = new HomeController(logger);
-            //var controller = new FakeController();
-            //controller.ControllerContext = new ControllerContext()
-            //{
-            //    HttpContext = new DefaultHttpContext { User = user }
-            //};
             var obj = new FakeIdentityUser(null);
             obj.Set_UserIdentityToHttpContext(this.HttpContext, true);
             var name = User.Identity.Name;
             this.HttpContext.User = User;
+
+            var logger = new Microsoft.Extensions.Logging.Abstractions.NullLogger<HomeController>();
+            var controller = new HomeController(logger, _httpContextAccessor);
+            controller.ControllerContext = new ControllerContext();
+            controller.ControllerContext.HttpContext = new DefaultHttpContext { User = User };
         }
 
+        [Fact]
+        public void Test5()
+        {
+            var userProfile = new ClaimsPrincipal(new ClaimsIdentity(
+                                    new Claim[]
+                                    {
+                                        new Claim(ClaimTypes.Name, "testUser"),
+                                        new Claim(ClaimTypes.NameIdentifier,$"testUser{DateTime.Now.ToString("yyyyMMddHH")}"),
+                                        new Claim("Email","testuser@abc.com"),
+                                        new Claim("Mobile","9988776655", ClaimValueTypes.Integer64),
+                                    }, "TestAuthentication"));
+
+            //var httpContext = _httpContextAccessor.HttpContext;
+            //if (httpContext != null)
+            //    httpContext.User = userProfile;
+
+            var controller = new HomeController(_logger, _httpContextAccessor);
+            controller.ControllerContext = new ControllerContext()
+            {
+                HttpContext = new DefaultHttpContext { User = userProfile }
+            };
+
+            controller.Index();
+        }
     }
 }

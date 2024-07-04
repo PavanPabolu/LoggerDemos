@@ -8,6 +8,7 @@
 
   <ItemGroup>
     <Compile Remove="Common\FakeIdentityUser - Copy.cs" />
+    <Compile Remove="Controllers\FakeController.cs" />
   </ItemGroup>
 
   <ItemGroup>
