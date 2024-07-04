@@ -6,12 +6,11 @@ var builder = WebApplication.CreateBuilder(args);
 
 
 
-// Add Application Insights
-builder.Services.AddApplicationInsightsTelemetry();
+builder.Services.AddHttpContextAccessor();
 // Add Telemetry Initializer
 builder.Services.AddSingleton<ITelemetryInitializer, CustomTelemetryInitializer>();
-builder.Services.AddHttpContextAccessor();
-
+// Add Application Insights
+builder.Services.AddApplicationInsightsTelemetry();
 
 
 
@@ -38,6 +37,6 @@ app.UseAuthorization();
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}");
+    pattern: "{controller=Home}/{action=Login}/{id?}");
 
 app.Run();
