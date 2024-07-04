@@ -42,10 +42,16 @@ Ex:
 - Active users on the system
 
 
+-------------------------------------------------------------------------------------------------------------
 Reference Links:
+-------------------------------------------------------------------------------------------------------------
 Azure Application Insights Tutorial | Amazing telemetry service
 https://www.youtube.com/watch?v=A0jAeGf2zUQ
 
 Custom Events and Metrics :: Application Insights (5 of 6)
 https://www.youtube.com/watch?v=jhepPNaaiyw
 
+Enable Application Insights server-side telemetry (no Visual Studio)
+https://learn.microsoft.com/en-us/azure/azure-monitor/app/asp-net-core?tabs=netcorenew#enable-application-insights-server-side-telemetry-no-visual-studio
+
+-------------------------------------------------------------------------------------------------------------

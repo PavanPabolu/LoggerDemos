@@ -1,6 +1,21 @@
+using Logger.AzureApplicationInsight.Analytics.UserIdentity.WebApp.Common;
+using Microsoft.ApplicationInsights.Extensibility;
+
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
+
+
+
+// Add Application Insights
+builder.Services.AddApplicationInsightsTelemetry();
+// Add Telemetry Initializer
+builder.Services.AddSingleton<ITelemetryInitializer, CustomTelemetryInitializer>();
+builder.Services.AddHttpContextAccessor();
+
+
+
+
+
 builder.Services.AddControllersWithViews();
 
 var app = builder.Build();
@@ -18,6 +33,7 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllerRoute(
