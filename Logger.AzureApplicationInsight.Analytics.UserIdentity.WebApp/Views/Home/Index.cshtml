@@ -10,7 +10,7 @@
 
     @(_httpContextAccessor.HttpContext.User.Identity.Name)
     
-    @if (User != null && (User?.Identity?.IsAuthenticated ?? false))
+    @if (Context.User != null && (Context.User?.Identity?.IsAuthenticated ?? false))
     {
         <p> Hello @(User.Identity.Name)!</p>
     }

@@ -20,7 +20,7 @@ namespace Logger.AzureApplicationInsight.Analytics.UserIdentity.WebApp.Controlle
             _httpContextAccessor = httpContextAccessor;
         }
 
-        [Authorize]
+        //[Authorize]
         public IActionResult Index()
         {
             var name = this.HttpContext.User.Identity.Name;
