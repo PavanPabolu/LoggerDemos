@@ -1,4 +1,5 @@
 ﻿using Microsoft.ApplicationInsights.Channel;
+using Microsoft.ApplicationInsights.DataContracts;
 using Microsoft.ApplicationInsights.Extensibility;
 using System.Security.Claims;
 
@@ -18,6 +19,10 @@ namespace Logger.AzureApplicationInsight.Analytics.UserIdentity.WebApp.Common
 
         public void Initialize(ITelemetry telemetry)
         {
+            var requestTelemetry = telemetry as RequestTelemetry;            
+            if (requestTelemetry == null)// Is this a TrackRequest() ?
+                return;
+
             var httpContext = _httpContextAccessor.HttpContext;
 
             if (httpContext != null && httpContext.User.Identity.IsAuthenticated)
@@ -30,5 +35,47 @@ namespace Logger.AzureApplicationInsight.Analytics.UserIdentity.WebApp.Common
                 }
             }
         }
+
+        private void AddTelemetry_ContextPropertyFromClaims(ITelemetry telemetry, string claimName)
+        {
+
+            var requestTelemetry = telemetry as RequestTelemetry;
+            
+            if (requestTelemetry == null)// Is this a TrackRequest() ?
+                return;
+
+            var httpContext = _httpContextAccessor.HttpContext;
+
+            if (httpContext != null)
+            {
+                var claim = httpContext.User.Claims.SingleOrDefault(x => x.Type.Equals(claimName, StringComparison.InvariantCultureIgnoreCase));
+
+                if (claim != null)
+                {
+                    requestTelemetry.Properties[claimName] = claim.Value;
+                }
+            }
+        }
+
+        private void AddTelemetry_CustomProperty(ITelemetry telemetry)//, string propName, string propValue)
+        {
+            var requestTelemetry = telemetry as RequestTelemetry;
+
+            if (requestTelemetry == null)// Is this a TrackRequest() ?
+                return;
+
+            var httpContext = _httpContextAccessor.HttpContext;
+
+            if (httpContext != null)
+            {
+                var propVal = (string)httpContext.Items["MyCustomProp"];
+
+                if (propVal != null)
+                {
+                    requestTelemetry.Properties["MyCustomProp"] = propVal;
+                }
+            }
+        }
+
     }
 }
